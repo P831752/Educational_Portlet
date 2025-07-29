@@ -9,16 +9,20 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: /odata
-            url: https://api10.successfactors.com
+          - url: https://api10preview.sapsf.com
+            authenticationType: BasicAuthentication
             destination: SF_DEST
+            path: /odata
+          - path: /odata/v4/educational/
+            url: https://larsen---toubro-limited-sf-ext-preview-pspace-education564a7b4e.cfapps.in30.hana.ondemand.com
+            destination: EDUCATIONAL_SRV
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
