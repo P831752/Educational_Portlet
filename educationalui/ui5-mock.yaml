@@ -40,4 +40,8 @@ server:
             metadataPath: ./webapp/localService/mainService/metadata.xml
             mockdataPath: ./webapp/localService/mainService/data
             generateMockData: true
+          - urlPath: /odata/v4/educational
+            metadataPath: ./webapp/localService/educational/metadata.xml
+            mockdataPath: ./webapp/localService/educational/data
+            generateMockData: true
         annotations: []

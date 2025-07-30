@@ -24,6 +24,15 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "educational": {
+        "uri": "/odata/v4/educational/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/educational/metadata.xml",
+          "odataVersion": "4.0"
+        }
       }
     }
   },
@@ -72,6 +81,15 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "educational": {
+        "dataSource": "educational",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
       }
     },
     "resources": {
