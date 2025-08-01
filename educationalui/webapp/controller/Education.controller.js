@@ -1,15 +1,21 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], (Controller) => {
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast"
+], (Controller, JSONModel, Filter, FilterOperator, MessageBox, MessageToast) => {
     "use strict";
 
     return Controller.extend("com.lt.educationalui.controller.Education", {
         onInit() {
 
             //Qualification Sub Type - other than SSC & HSC
-            this._getQualificationSubType();
+            //this._getQualificationSubType();
 
-            this._onCreateRecord();
+            //this._onCreateRecord();
+            //this._onGetRecord();
         },
 
         _getQualificationSubType: function () { 
@@ -45,7 +51,7 @@ sap.ui.define([
                     "cgpa":"7.2",
                     "division":"",
                     "grade":"",
-                    "status":"",
+                    "status":"PA",
                     "fileName":""
                 };
 
@@ -78,6 +84,56 @@ sap.ui.define([
             }
         },
 
+        _onGetRecord: function(oEvent) { 
+
+            try {         
+        /*        var aFilters = [
+                    new Filter("PSID", FilterOperator.Contains, "234569"),
+                    new Filter("STATUS", FilterOperator.Contains, "PA")
+                ];
+
+              var oModel = this.getOwnerComponent().getModel("educational");
+                oModel.read("Educational_Details", {
+                    filters: aFilters,
+                    success: function (resp) {
+                        console.log("GetRecord:" +resp.results);
+                        // oJSONModel.setData(resp.results);
+                        // this.getView().setModel(oJSONModel, "SFCand");
+                    }.bind(this),
+                    error: function (err) {
+                        //oBusyDialog.close();
+                        console.error("Error fetching data", err);
+                    }
+                }); */
+                
+                var oModel = this.getOwnerComponent().getModel("educational").sServiceUrl;
+                var entity = "Educational_Details"
+                var filter = "$filter=PSID eq '234510' and status eq 'PA'";
+
+                var url = oModel + entity + "?" + filter;
+
+                $.ajax({
+                    url: url,
+                    type: "GET",  
+                    contentType: "application/json",
+                    dataType: "json",
+                    async: false,                 
+                    success: function(data) {
+                        console.log("Reportees:" +data.d.results.length);
+                    },
+                    error: function(error) {
+                        console.log("Error:", error);
+                        console.log("Reportees:", error.responseText);
+                        //oBusyDialog.close();
+                    }
+                }); 
+
+            } catch (e) {
+                MessageBox.error("Unexpected error in Get Record: " + e.message);
+                console.log("Exception caught:", e.message);
+            }
+        },
+
         _onCreateRecord1: function () {
             const oModel = this.getOwnerComponent().getModel("educational");
           
@@ -100,7 +156,7 @@ sap.ui.define([
                 cgpa: "7.2",
                 division: "",
                 grade: "",
-                status: "",
+                status: "PA",
                 fileName: ""
               };
           
