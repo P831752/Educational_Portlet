@@ -23,6 +23,10 @@ server:
           - path: /odata/v4/educational
             url: https://larsen---toubro-limited-sf-ext-preview-pspace-education564a7b4e.cfapps.in30.hana.ondemand.com
             destination: EDUCATIONAL_SRV
+          - path: /DMS_Dest
+            pathReplace: /
+            url: https://api-sdm-di.cfapps.in30.hana.ondemand.com/browser
+            destination: DMS_Dest
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

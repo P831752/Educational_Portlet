@@ -16,7 +16,69 @@ sap.ui.define([
 
             //this._onCreateRecord();
             //this._onGetRecord();
+
+            //DMS Attachments
+            //this._createDocFolder();
+            //this._getLoggedUserEducationalDetails();
         },
+
+        _isFolderExist: function () { 
+
+        },
+
+        _getLoggedUserEducationalDetails: function () {
+          //https://api10preview.sapsf.com/odata/v2/cust_EducationChild1?$filter=cust_EducationParentLegacy_externalCode eq '10012553'
+
+          try { 
+                var oModel = this.getOwnerComponent().getModel();
+                
+                var aFilters = [
+                    new sap.ui.model.Filter("cust_EducationParentLegacy_externalCode", sap.ui.model.FilterOperator.EQ, "10012553"),
+                ];
+
+                oModel.read("/cust_EducationChild1", {
+                    filters: aFilters,
+                    success: function (resp) {      
+                        //resp.results[0].externalCode = QualificationSubType Code        
+                        console.log("Looged User Certificates list:" +resp.results.length);   
+                    }.bind(this),
+                    error: function (err) {
+                        console.error("Error Looged User Certificates", err);
+                    }
+                });                
+    
+        } catch (e) {
+            MessageBox.error("Unexpected error in to get LoggedUser EducationalDetails: " + e.message);
+            //console.log("Exception caught:", e.message);
+        }
+    },
+
+        _createDocFolder: function () {
+            let oForm = new FormData();
+            oForm.append("cmisaction", "createFolder");
+            oForm.append("propertyId[0]", "cmis:name");
+            oForm.append("propertyValue[0]", "123456");
+            oForm.append("propertyId[1]", "cmis:objectTypeId");
+            oForm.append("propertyValue[1]", "cmis:folder");
+            oForm.append("succinct", "true");
+            
+            jQuery.ajax({
+             url: this.getOwnerComponent().getManifestObject().resolveUri('DMS_Dest'),// <Repo ID>/root,
+             type: "POST",
+             headers: {
+              "Accept": "application/json"
+             },
+             data: oForm,
+             contentType: false,
+             processData: false,
+             success: function (response) {
+                MessageBox.success("Folder Created Successfully: " + response)
+             },
+             error: function (xhr, status, error) {
+              MessageBox.error("Error while creating DocFolder: " + error)
+             }
+            });
+           },
 
         _getQualificationSubType: function () { 
             var oModel = this.getOwnerComponent().getModel(),
@@ -36,7 +98,7 @@ sap.ui.define([
         _onCreateRecord: function(oEvent) { 
             try {
                 var eduDetails = {
-                    "PSID":"234510",
+                    "PSID":"234515",
                     "course":"SSC",
                     "qualificationSubType":"SSC1",
                     "educationCertificate":"10",
@@ -51,7 +113,7 @@ sap.ui.define([
                     "cgpa":"7.2",
                     "division":"",
                     "grade":"",
-                    "status":"PA",
+                    "status":"D",
                     "fileName":""
                 };
 
