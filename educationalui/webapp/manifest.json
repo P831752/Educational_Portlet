@@ -53,7 +53,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.138.0",
       "libs": {
@@ -122,8 +122,8 @@
       ],
       "targets": {
         "TargetEducation": {
-          "id": "Education",
-          "name": "Education"
+          "id": "Education1",
+          "name": "Education1"
         }
       }
     },

@@ -1,0 +1,236 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:upload="sap.m.upload"
+	xmlns:microchart="sap.suite.ui.microchart"
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	core:require="{DateType: 'sap/ui/model/type/Date'}"
+	controllerName="com.lt.educationalui.controller.Education1"
+	xmlns:t="sap.ui.table" 
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+    
+	<!-- <ObjectPageLayout id="ObjectPageLayout" subSectionLayout="TitleOnLeft"> -->
+	<!-- showAnchorBar="false" - Hiding the Sections
+	useIconTabBar="true" - dispaly section only after clik. All sections are not visible -->
+
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" useIconTabBar="true" isChildPage="true" selectedSection="opsGraduation">	
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+				<actions>
+					<!-- <m:Button id="education" text="Add Education" type="Emphasized" press="onAddEducation"/> -->
+					<m:Button id="addEducation" text="Add Education" type="Emphasized" press="onPressAddEducation" ariaHasPopup="Menu"/>
+					<m:Button id="edit" text="Edit" type="Emphasized" press="onEdit" visible="false"/>
+                    <m:Button id="submit" text="" type="Emphasized" press="onSubmit"/>
+					<m:Button id="save" text="Save As Draft" type="Emphasized" press="onSave" visible="false"/>
+					<m:Button icon="sap-icon://pdf-attachment" type="Emphasized" press="onDownloadPDF" />
+					<m:Button id="cancel" text="Cancel" type="Emphasized" press="onCancel" visible="false"/>
+				</actions>
+    			<expandedHeading>
+				    <m:HBox alignItems="Center">
+                        <m:Image src="./images/Logo.png" height="50px" />
+						<m:Title text="" width="50px" />
+                        <m:Title text="Employee Educational Details" level="H2" class="customTitle"/>
+                    </m:HBox>
+					<!-- <m:Title text="Overview of Educational Details" wrapping="true" /> -->
+				</expandedHeading>
+				<snappedHeading>
+					<m:HBox>
+						<m:VBox>
+							<m:Avatar src="" class="sapUiSmallMarginEnd" />
+						</m:VBox>
+					</m:HBox>
+				</snappedHeading>
+
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+		<headerContent>
+			<m:HBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+				<m:Avatar src="../templates/avatar.PNG" class="sapUiMediumMarginEnd" displaySize="L"/>
+			
+				<m:HBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+					<m:VBox>
+						<m:HBox class="sapUiTinyMarginBottom" renderType="Bare" >
+							<m:Label design="Bold" text="PS ID:" class="sapUiSmallMarginEnd"/>
+						</m:HBox>
+						<m:HBox class="sapUiTinyMarginBottom">
+							<m:Label design="Bold" text="Name:" class="sapUiSmallMarginEnd"/>
+						</m:HBox>
+						<m:HBox class="sapUiTinyMarginBottom">
+							<m:Label design="Bold" text="Grade/Cadre:" class="sapUiSmallMarginEnd"/>
+						</m:HBox>
+						<m:HBox class="sapUiTinyMarginBottom">
+							<m:Label design="Bold" text="IC:" class="sapUiSmallMarginEnd"/>
+						</m:HBox>					
+					</m:VBox>
+					<m:VBox>
+						<m:HBox class="sapUiTinyMarginBottom" renderType="Bare" >
+							<m:Text text="20367055"/>
+						</m:HBox>
+						<m:HBox class="sapUiTinyMarginBottom">
+							<m:Text text="DHANANJAY KUMAR"/>
+						</m:HBox>
+						<m:HBox class="sapUiTinyMarginBottom">
+							<m:Text text="M2-A"/>
+						</m:HBox>
+							<m:HBox class="sapUiTinyMarginBottom">
+							<m:Text text="Heavy Engineering"/>
+						</m:HBox>	
+					</m:VBox>						
+				</m:HBox>   
+			</m:HBox> 
+        </headerContent>
+
+        <sections>
+			<!-- <ObjectPageSection anchorBarButtonColor="Negative" titleUppercase="false" id="personalSection" title="SSC *" class="redAsterisk" importance="Medium"> -->
+			<ObjectPageSection anchorBarButtonColor="Positive" titleUppercase="false" id="personalSection" title="SSC" importance="Medium">
+				<!-- <customAnchorBarButton>
+					<m:Button text="Edit" icon="sap-icon://edit" iconFirst="false" type="Transparent" press="onDiplomaEdit"/>						
+				</customAnchorBarButton> -->
+				<subSections>
+					<ObjectPageSubSection id="personalSectionSS1" title="SSC" titleUppercase="false" class="sapUiNoMargin">
+						
+						<actions>
+							<m:Text text="SSC" class="sapTextBold" />
+							<m:Text text=" " width="1085px"/>
+							<m:Button icon="sap-icon://edit" type="Transparent" press="onSSCEdit"/>
+							<m:Button icon="sap-icon://reset" type="Transparent" press="onSSCReset"/>							
+						</actions>
+						<m:VBox>
+						<m:VBox> 
+							<m:HBox>
+								<m:items>
+									<m:VBox class="sapUiLargeMarginEnd" width="20%">
+										<m:Label design="Bold" text="Education Certificate" />
+										<m:Text id="tEduCer1" width="200px" maxLines="1" tooltip="School Certificate (SSC, Std X and Less)" text="School Certificate (SSC, Std X and Less)" visible="true"/>									
+										<m:ComboBox id="iEduCer1" visible="false" selectedKey="{educerModel>key}"
+												items="{
+													path: 'educerModel>/',
+													sorter: { path: 'educerModel>text' }
+												}">
+											<core:Item key="{educerModel>key}" text="{educerModel>text}" />
+										</m:ComboBox>
+										<!-- <m:Text id="sscAboveUniversity" text=" " width=""/> -->
+										<m:Text text=" " width="20px"/>
+										<m:Label design="Bold" text="Duration (in months)" />
+										<m:Text id="tDuration1" visible="true" text="12"/>
+										<m:ComboBox id="iDuration1" visible="false" selectedKey="{durationModel>key}"
+												items="{
+													path: 'durationModel>/'
+												}">
+											<core:Item key="{durationModel>key}" text="{durationModel>text}" />
+										</m:ComboBox>	
+			                        </m:VBox>
+
+									<m:VBox class="sapUiLargeMarginEnd" width="20%">
+										<m:Label design="Bold" text="Institution Name" />
+										<m:Text id="tInsName1" maxLines="1" tooltip="Pandit Deendayal Petroleum University" text="Pandit Deendayal Petroleum University" visible="true"/>								
+										<m:ComboBox id="iInsName1" visible="false" selectionChange="instnameChange"
+                                                items="{
+                                                    path: 'instnameModel>/',
+                                                    sorter: { path: 'key' }
+                                                }">
+                                                <core:Item key="{instnameModel>key}" text="{instnameModel>text}" />
+                                        </m:ComboBox>
+										<m:Text text=" " width="20px"/>
+
+										<m:Label design="Bold" text="Percentage" />
+										<m:Text id="tPercentage1" visible="true" text="75"/>
+										<m:Input id="iPercentage1" visible="false" value="75"/>							
+									</m:VBox>
+
+									<m:VBox class="sapUiLargeMarginEnd" width="20%">
+										<m:Label design="Bold" text="University / Board" />
+										<m:Text id="tUnivName1" text="B S E B  Patna" visible="true"/>								
+										<m:ComboBox id="iUnivName1" visible="false" selectedKey="{sscboardModel>key}"
+												items="{
+													path: 'sscboardModel>/',
+													sorter: { path: 'sscboardModel>text' }
+												}">
+												<core:Item key="{sscboardModel>key}" text="{sscboardModel>text}" />
+										</m:ComboBox>
+										<m:Text text=" " width="20px"/>	
+										<m:Label design="Bold" text="CGPA" />
+										<m:Text id="tCGPA1" visible="true" text=""/>
+										<m:Input id="iCGPA1" visible="false" value=""/>
+									</m:VBox>
+
+									<m:VBox class="sapUiLargeMarginEnd" width="20%">
+										<m:Label design="Bold" text="Year of Passing" />
+										<m:Text id="tYear1" visible="true" text="2001"/>
+										<!-- <m:Input id="iYear1" visible="false" value="2000"/>	 -->
+										<m:ComboBox id="iYear1" visible="false" selectedKey="{yearsModel>key}"
+												items="{
+													path: 'yearsModel>/',
+													sorter: { path: 'yearsModel>text' }
+												}">
+											<core:Item key="{yearsModel>key}" text="{yearsModel>text}" />
+										</m:ComboBox>
+										<m:Text text=" " width="20px"/>
+
+										<m:Label design="Bold" text="Division" />
+										<m:Text id="tDivision1" visible="true" text=""/>
+										<m:ComboBox id="iDivision1" visible="false" selectedKey="{divisionModel>key}"
+												items="{
+													path: 'divisionModel>/',
+													sorter: { path: 'divisionModel>text' }
+												}">
+											<core:Item key="{divisionModel>key}" text="{divisionModel>text}" />
+										</m:ComboBox>
+									</m:VBox>
+									
+									<m:VBox class="sapUiLargeMarginEnd" width="20%">
+										<m:Label design="Bold" text="Type of the Course" />
+										<m:Text id="tCourseType1" text="Full Time" visible="true"/>								
+										<m:ComboBox id="iCourseType1" visible="false" selectedKey="{coursetypeModel>key}"
+												items="{
+													path: 'coursetypeModel>/',
+													sorter: { path: 'coursetypeModel>text' }
+											}">
+											<core:Item key="{coursetypeModel>key}" text="{coursetypeModel>text}" />
+										</m:ComboBox>
+										<m:Text text=" " width="20px"/>
+
+										<m:Label design="Bold" text="Grade" />
+										<m:Text id="tGrade1" visible="true" text=""/>
+										<m:ComboBox id="iGrade1" visible="false" selectedKey="{gradeModel>key}"
+												items="{
+													path: 'gradeModel>/',
+													sorter: { path: 'gradeModel>text' }
+												}">
+											<core:Item key="{gradeModel>key}" text="{gradeModel>text}" />
+										</m:ComboBox>										
+									</m:VBox>
+                    			</m:items>
+                			</m:HBox>
+							</m:VBox>
+
+							<m:Text text=" " width="20px"/>
+							<m:Panel id="idSSCAttachements" headerText="Attachments" expandable="true" expanded="true" visible="true">
+											<upload:UploadSet 
+												id="uploadSetSSC"
+												uploadUrl="/upload/"
+												maxFileSize="0.2"   
+												fileTypes="pdf"
+												mediaTypes="application/pdf"
+												uploadEnabled="true"
+												showIcons="true"
+												instantUpload="true"
+												mediaTypeMismatch="onMediaTypeMismatch"
+												fileSizeExceeded="onFileSizeExceeded"
+												uploadCompleted="onUploadCompleted">
+											</upload:UploadSet>
+										</m:Panel>
+							<m:VBox id="attachmentTable" alignItems="Center"/>
+						
+
+						</m:VBox>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+        </sections>
+	</ObjectPageLayout>
+</mvc:View>
