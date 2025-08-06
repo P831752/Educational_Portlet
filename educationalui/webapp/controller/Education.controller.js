@@ -10,7 +10,10 @@ sap.ui.define([
 
     return Controller.extend("com.lt.educationalui.controller.Education", {
         onInit() {
-        },              
+        },
+        delete(){
+            
+        }              
 
     });
 });
