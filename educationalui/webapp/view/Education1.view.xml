@@ -85,7 +85,7 @@
         </headerContent>
 
         <sections>
-			<!-- <ObjectPageSection anchorBarButtonColor="Negative" titleUppercase="false" id="personalSection" title="SSC *" class="redAsterisk" importance="Medium"> -->
+			<ObjectPageSection anchorBarButtonColor="Negative" titleUppercase="false" id="personalSection" title="SSC *" class="redAsterisk" importance="Medium">
 			<ObjectPageSection anchorBarButtonColor="Positive" titleUppercase="false" id="personalSection" title="SSC" importance="Medium">
 				<!-- <customAnchorBarButton>
 					<m:Button text="Edit" icon="sap-icon://edit" iconFirst="false" type="Transparent" press="onDiplomaEdit"/>						

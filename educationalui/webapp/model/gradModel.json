@@ -1,0 +1,67 @@
+{
+  "GraduationList": [
+    {
+      "id": "grad1",
+      "title": "Graduation",
+      "blocks": [
+        {
+          "QualificationSubType": "Engineering",
+          "InstitutionName": "Pandit Deendayal Petroleum University",
+          "CGPA": "8.67",
+          "EducationCertificate": "Bachelor of Technology (BTech)",
+          "UniversityBoard": "Maulana Abul Kalam Azad University of Technology, West Bengal",
+          "Division": "First",
+          "Branch1": "Electronics & Instrumentation",
+          "TypeOfCourse": "Full Time",
+          "Grade": "A",
+          "Branch2": "Electronics",
+          "DurationInMonths": 48,
+          "YearOfPassing": 2009,
+          "Percentage": 86.7
+        }
+      ]
+    },
+    {
+      "id": "grad2",
+      "title": "BSc",
+      "blocks": [
+        {
+          "QualificationSubType": "Science",
+          "InstitutionName": "XYZ College",
+          "CGPA": "7.5",
+          "EducationCertificate": "Bachelor of Science",
+          "UniversityBoard": "XYZ University",
+          "Division": "Second",
+          "Branch1": "Physics",
+          "TypeOfCourse": "Part-time",
+          "Grade": "B",
+          "Branch2": "Astrophysics",
+          "DurationInMonths": 36,
+          "YearOfPassing": 2020,
+          "Percentage": 75.0
+        }
+      ]
+    },
+    {
+      "id": "grad3",
+      "title": "BA",
+      "blocks": [
+        {
+          "QualificationSubType": "Arts",
+          "InstitutionName": "ABC College",
+          "CGPA": "8.2",
+          "EducationCertificate": "Bachelor of Arts",
+          "UniversityBoard": "ABC University",
+          "Division": "First",
+          "Branch1": "English Literature",
+          "TypeOfCourse": "Full-time",
+          "Grade": "A",
+          "Branch2": "Creative Writing",
+          "DurationInMonths": 36,
+          "YearOfPassing": 2021,
+          "Percentage": 82.0
+        }
+      ]
+    }
+  ]
+}

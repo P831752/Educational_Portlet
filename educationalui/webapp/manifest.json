@@ -122,8 +122,8 @@
       ],
       "targets": {
         "TargetEducation": {
-          "id": "Education1",
-          "name": "Education1"
+          "id": "Education",
+          "name": "Education"
         }
       }
     },
